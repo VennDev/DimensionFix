@@ -48,9 +48,12 @@ final class Loader extends PluginBase
             $this->registerHackToWorldIfApplicable($event->getWorld());
         }, EventPriority::LOWEST, $this);
         $this->getServer()->getPluginManager()->registerEvent(LowMemoryEvent::class, function (LowMemoryEvent $event): void {
-            foreach ($this->getServer()->getWorldManager()->getWorlds() as $world) {
-                $this->registerHackToWorldIfApplicable($world);
-            }
+            new Async(function () {
+                foreach ($this->getServer()->getWorldManager()->getWorlds() as $world) {
+                    $this->registerHackToWorldIfApplicable($world);
+                    FiberManager::wait();
+                }
+            });
         }, EventPriority::LOWEST, $this);
 
         // register already-registered values
