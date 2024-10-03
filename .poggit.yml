@@ -1,4 +1,4 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/VennDev/DimensionFix
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/VennDev/VDimensionFix
 build-by-default: true
 branches:
 - master
